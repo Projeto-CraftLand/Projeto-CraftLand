@@ -1,4 +1,4 @@
-# Projeto Individual -CraftLand
+# Projeto Individual - CraftLand
 
 ![Logo](https://imgur.com/HOZN4wR.png)
 
