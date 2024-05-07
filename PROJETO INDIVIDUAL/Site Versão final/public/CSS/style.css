@@ -277,10 +277,21 @@ a {
     color: white;
 }
 
+#possuiOuNao {
+    font-size: 15px;
+    font-family: roboto;
+    color: white;
+}
+
+#possuiOuNao a {
+    color: rgb(134, 79, 43);
+    text-decoration: underline;
+}
+
 
 /* Sobres */
 
-.container-scroll-sobre {
+.container-scroll-sobreEdu {
     padding-top: 3%;
     display: flex;
     flex-direction: row;
@@ -288,12 +299,12 @@ a {
     justify-content: space-evenly;
 }
 
-.container-scroll-sobre img {
+.container-scroll-sobreEdu img {
     width: 35%;
     padding: 5%;
 }
 
-.sobre h1 {
+.sobreEdu h1 {
     font-family: minecraft;
     display: flex;
     flex-direction: column;
@@ -301,13 +312,131 @@ a {
     text-align: left;
 }
 
-.sobre span {
+.sobreEdu span {
     font-family: roboto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: left;
+    text-align: center;
     font-size: 15px;
+
+}
+
+.sobreEdu {
+    background-color: white;
+    border-radius: 5%;
+    padding: 2%;
+}
+
+.container-scroll-sobreMoj {
+    padding-top: 2%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.container-scroll-sobreMoj img {
+    width: 35%;
+    padding: 5%;
+}
+
+.sobreMoj h1 {
+    font-family: minecraft;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+}
+
+.sobreMoj span {
+    font-family: roboto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-size: 15px;
+
+}
+
+.sobreMoj {
+    background-color: white;
+    border-radius: 5%;
+    padding: 2%;
+}
+
+.container-scroll-sobreMine {
+    padding-top: 2%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.container-scroll-sobreMine img {
+    width: 35%;
+    padding: 5%;
+}
+
+.sobreMine h1 {
+    font-family: minecraft;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+}
+
+.sobreMine span {
+    font-family: roboto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-size: 15px;
+
+}
+
+.sobreMine {
+    background-color: white;
+    border-radius: 5%;
+    padding: 1%;
+}
+
+.container-scroll-sobreMim {
+    padding-top: 5%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.container-scroll-sobreMim img {
+    width: 35%;
+    padding: 5%;
+}
+
+.sobreMim h1 {
+    font-family: minecraft;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+}
+
+.sobreMim span {
+    font-family: roboto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-size: 15px;
+
+}
+
+.sobreMim {
+    background-color: white;
+    border-radius: 10%;
+    padding: 2%;
 }
 
 /* Perfil */
