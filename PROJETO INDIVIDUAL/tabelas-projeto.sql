@@ -10,9 +10,9 @@ CREATE TABLE usuario (
 );
 
 create table pontuacao (
-fkUsuario int primary key,
-pontuacao int,
+pontuacao int primary key,
 dtQuiz datetime,
+fkUsuario int,
 foreign key (fkUsuario) references usuario (id)
 );
 

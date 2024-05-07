@@ -376,3 +376,17 @@ a {
     margin-right: 5%;
     margin-top: 50px;
 }
+
+/*DashBoard*/
+
+#div_total {
+    font-size: 25px;
+    background-color: white;
+    font-family: minecraft;
+    border-radius: 30px;
+    width: 15vw;
+    height: 15vh;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
