@@ -10,8 +10,8 @@ CREATE TABLE usuario (
 );
 
 create table pontuacao (
-pontuacao1 int,
-pontuacao2 int,
+pontuacaoFase1 int,
+pontuacaoFase2 int,
 fkUsuario int,
 primary key (pontuacao1, pontuacao2),
 foreign key (fkUsuario) references usuario (id)
