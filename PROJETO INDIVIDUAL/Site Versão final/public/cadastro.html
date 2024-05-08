@@ -73,6 +73,7 @@
         <img src="./imgs/icons/cadeado.png">
         <input type="password" id="input_Confirmsenha" placeholder="confirmar senha"> <br>
         <div id="div_erro"></div> <br>
+        <div id="div_sucesso"></div>
         <button class="btn btn-outline-light" onclick="cadastrar()">Cadastrar</button> <br>
         <span id="possuiOuNao">Já tem login? <a href="./login.html">Entrar</a></span>
     </div>
@@ -122,7 +123,7 @@
 
                             if (resposta.ok) {
 
-                                div_erro.innerHTML =
+                                div_sucesso.innerHTML =
                                     "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
 
                                 setTimeout(() => {
