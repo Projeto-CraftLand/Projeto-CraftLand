@@ -1,0 +1,101 @@
+/* Estilo para as perguntas do quiz */
+#containerPerguntas {
+    margin-top: 20px;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards;
+}
+
+#containerPerguntas div {
+    margin-bottom: 20px;
+    border-radius: 15px;
+    background-color: #f8f1e7;
+    /* Marfim */
+    padding: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    animation: slideIn 1s ease forwards;
+}
+
+#containerPerguntas h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #4a4e4d;
+    /* Cinza Escuro */
+}
+
+#containerPerguntas input[type="radio"] {
+    margin-right: 10px;
+    appearance: none;
+    border: 2px solid #76b041;
+    /* Verde Musgo */
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    transition: border-color 0.3s ease;
+}
+
+#containerPerguntas input[type="radio"]:checked {
+    border-color: #d95d39;
+    /* Vermelho Tijolo */
+}
+
+#containerPerguntas input[type="radio"]::before {
+    content: '';
+    display: block;
+    width: 12px;
+    height: 12px;
+    background-color: #d95d39;
+    /* Vermelho Tijolo */
+    border-radius: 50%;
+    opacity: 0;
+    transform: scale(0);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#containerPerguntas input[type="radio"]:checked::before {
+    opacity: 1;
+    transform: scale(1);
+}
+
+#containerPerguntas label {
+    font-size: 18px;
+    color: #4a4e4d;
+    /* Cinza Escuro */
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+#containerPerguntas label:hover {
+    color: #76b041;
+    /* Verde Musgo */
+}
+
+#containerPerguntas #resposta {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #d95d39;
+    /* Vermelho Tijolo */
+}
+
+/* Animações */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
