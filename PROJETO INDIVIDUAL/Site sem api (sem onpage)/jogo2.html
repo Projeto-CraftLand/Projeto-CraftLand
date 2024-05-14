@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Minecraft</title>
+</head>
+
+<body>
+
+    <h1>Quiz Minecraft</h1>
+
+    <div id="quiz">
+        <div id="containerPerguntas"></div>
+        <button id="enviar">Enviar</button>
+    </div>
+
+    <div id="resultado"></div>
+
+    <script>
+        // Array de perguntas
+        const perguntas = [
+            "Qual bloco é usado para construir o portal para o Nether?",
+            "Qual é o nome do monstro que explode?",
+            "Qual é o nome do criador do Minecraft?",
+            "Qual é o recurso usado para fazer poções?",
+            "Qual é o bloco de mineração mais forte no jogo?",
+            "Qual é a dimensão do Nether?",
+            "Quantos blocos de altura tem o mundo do Minecraft?",
+            "Qual é a função do Ender Dragon no jogo?",
+            "Quais são os nomes dos mobs hostis que aparecem à noite?",
+            "O que você precisa para criar uma poção de força?"
+        ];
+
+        // Opções para cada pergunta
+        const opcoes = [
+            ["Obsidiana", "Pedra", "Madeira", "Cobblestone"],
+            ["Zumbi", "Esqueleto", "Creeper", "Enderman"],
+            ["Notch", "Herobrine", "Steve", "Ender Dragon"],
+            ["Diamante", "Ouro", "Ferro", "Nether Wart"],
+            ["Diamante", "Ouro", "Pedra", "Obsidiana"],
+            ["3", "4", "5", "6"],
+            ["128", "256", "512", "1024"],
+            ["Finalizar o jogo", "Criar portais", "Defender o mundo", "Nenhuma"],
+            ["Zumbi e Creeper", "Zumbi e Enderman", "Enderman e Creeper", "Esqueleto e Zumbi"],
+            ["Poção de água e blaze powder", "Poção de água e Nether Wart", "Poção de força e blaze rod", "Poção de força e Nether Wart"]
+        ];
+
+        // Respostas corretas para cada pergunta
+        const respostas = [
+            "Obsidiana", "Creeper", "Notch", "Nether Wart", "Obsidiana",
+            "5", "256", "Finalizar o jogo", "Zumbi e Creeper", "Poção de força e blaze rod"
+        ];
+
+        const containerQuiz = document.getElementById('quiz');
+        const containerResultado = document.getElementById('resultado');
+        const botaoEnviar = document.getElementById('enviar');
+        const containerPerguntas = document.getElementById('containerPerguntas');
+
+        let pontuacao = 0; // Variável para armazenar a pontuação do usuário
+        let indicePerguntaAtual = 0; // Variável para rastrear o índice da próxima pergunta a ser exibida
+
+        // Função para exibir as próximas 5 perguntas
+        function exibirPerguntas() {
+            // Limpa o container de perguntas
+            containerPerguntas.innerHTML = '';
+
+            // Exibe as próximas 5 perguntas
+            for (let i = indicePerguntaAtual; i < indicePerguntaAtual + 5; i++) {
+                const pergunta = perguntas[i];
+                const opcoesPergunta = opcoes[i];
+
+                const divPergunta = document.createElement('div');
+                divPergunta.innerHTML = `
+        <h2>${pergunta}</h2>
+        ${opcoesPergunta.map((opcao, indiceOpcao) => `
+          <input type="radio" name="pergunta${i}" value="${opcao}" id="pergunta${i}_opcao${indiceOpcao}">
+          <label for="pergunta${i}_opcao${indiceOpcao}">${opcao}</label><br>
+        `).join('')}
+      `;
+                containerPerguntas.appendChild(divPergunta);
+            }
+
+            // Atualiza o índice da próxima pergunta
+            indicePerguntaAtual += 5;
+        }
+
+        // Função para verificar as respostas e exibir o resultado final
+        function verificarRespostas() {
+            perguntas.forEach((pergunta, indice) => {
+                const opcaoSelecionada = document.querySelector(`input[name="pergunta${indice}"]:checked`);
+                if (opcaoSelecionada && opcaoSelecionada.value === respostas[indice]) {
+                    pontuacao++;
+                }
+            });
+
+            mostrarResultado();
+        }
+
+        // Função para mostrar o resultado final
+        function mostrarResultado() {
+            containerQuiz.style.display = 'none';
+            containerResultado.style.display = 'block';
+            containerResultado.textContent = `Você acertou ${pontuacao} de ${perguntas.length} perguntas.`;
+        }
+
+        // Event listener para o botão de enviar
+        botaoEnviar.addEventListener('click', () => {
+            if (indicePerguntaAtual < perguntas.length) {
+                exibirPerguntas(); // Exibe as próximas 5 perguntas
+            } else {
+                verificarRespostas(); // Verifica as respostas e mostra o resultado final
+            }
+        });
+
+        // Exibe as primeiras 5 perguntas
+        exibirPerguntas();
+    </script>
+
+</body>
+
+</html>

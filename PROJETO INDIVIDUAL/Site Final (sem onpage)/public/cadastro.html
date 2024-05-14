@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Craftland | Cadastro</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="shortcut icon" href="./imgs/logo mine.png" type="image/x-icon">
+</head>
+
+<body>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+        crossorigin="anonymous"></script>
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a href="./index.html"><img src="./imgs/logo mine.png"></a>
+            <a class="navbar-brand" href="./index.html">CraftLand</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="sobre_mim.html">Sobre mim</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sobre_mine.html">Sobre o Minecraft</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sobre_mojang.html">Sobre a Mojang</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sobre_mineEdu.html">Sobre o Minecraft Education</a>
+                    </li>
+
+                </ul>
+                <div class="btns_navbar">
+                    <button class="btn btn-outline-success" onclick="btn_login()"><a
+                            href="login.html">Login</a></button>
+                    <button class="btn btn-outline-success" onclick="btn_cadastro()"><a
+                            href="cadastro.html">Cadastro</a></button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="cadastro">
+        <span id="cadastro">Cadastro</span> <br> <br>
+        <img src="./imgs/icons/usuario.png">
+        <input type="text" id="input_nome" placeholder="nome"> <br> <br>
+        <img src="./imgs/icons/sinal-de-arroba.png">
+        <input type="text" id="input_email" placeholder="email"> <br>
+        <span id="deveConter">*o email deverá conter @</span> <br>
+        <img src="./imgs/icons/cadeado.png">
+        <input type="password" id="input_senha" placeholder="senha"> <br>
+        <span id="deveConter">*deverá conter pelo menos um numero e um caractere especial</span> <br>
+        <img src="./imgs/icons/cadeado.png">
+        <input type="password" id="input_Confirmsenha" placeholder="confirmar senha"> <br>
+        <div id="div_erro"></div> <br>
+        <div id="div_sucesso"></div>
+        <button class="btn btn-outline-light" onclick="cadastrar()">Cadastrar</button> <br>
+        <span id="possuiOuNao">Já tem login? <a href="./login.html">Entrar</a></span>
+    </div>
+
+</body>
+
+<script>
+
+    function cadastrar() {
+
+        const nomeVar = input_nome.value;
+        const emailVar = input_email.value;
+        const senhaVar = input_senha.value;
+        const confirmacaoSenhaVar = input_Confirmsenha.value;
+
+        let variavel = false;
+
+        if (emailVar != "" || nomeVar != "" || senhaVar != "" || confirmacaoSenhaVar != "") {
+
+            if (emailVar.indexOf("@") == -1) {
+                div_erro.innerHTML = `email invalido`
+            } else if (senhaVar.indexOf("@") != -1 || senhaVar.indexOf("#") != -1 || senhaVar.indexOf("%") != -1) {
+                // if (senha.length >= 8) {
+                for (let contador = 0; contador <= 9; contador++) {
+                    if (senhaVar.indexOf(contador) != -1) {
+                        variavel = true;
+                    }
+                }
+                if (variavel == false) {
+                    div_erro.innerHTML = `senha não possui nenhum numero`
+                } else if (senhaVar == confirmacaoSenhaVar) {
+                    fetch("/usuarios/cadastrar", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            // crie um atributo que recebe o valor recuperado aqui
+                            // Agora vá para o arquivo routes/usuario.js
+                            nomeServer: nomeVar,
+                            emailServer: emailVar,
+                            senhaServer: senhaVar,
+                        }),
+                    })
+                        .then(function (resposta) {
+                            console.log("resposta: ", resposta);
+
+                            if (resposta.ok) {
+
+                                div_sucesso.innerHTML =
+                                    "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+                                setTimeout(() => {
+                                    window.location = "login.html";
+                                }, "2000");
+
+                            } else {
+                                throw "Houve um erro ao tentar realizar o cadastro!";
+                            }
+                        })
+                        .catch(function (resposta) {
+                            console.log(`#ERRO: ${resposta}`);
+                        });
+
+                    return false;
+                } else {
+                    div_erro.innerHTML = `senhas não conferem`
+                }
+                // } else {
+                //     div_erro.innerHTML = "senha menor que 8 caracteres"
+                // }
+            } else {
+                div_erro.innerHTML = "senha não contem caracter especial"
+            }
+        } else {
+            div_erro.innerHTML = `preencha todos os campos`
+        }
+    }
+
+</script>

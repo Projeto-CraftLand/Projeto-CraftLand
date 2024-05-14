@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Craftland | Resultado</title>
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="shortcut icon" href="./imgs/logo mine.png" type="image/x-icon">
+</head>
+
+<body>
+    <div id="nav-sairResultado">
+        <a href="./perfil.html"><img src="imgs/icons/icons8-seta-esquerda-30.png"></a>
+    </div>
+    <div class="container-scroll-dash">
+        <div style="display: flex;">
+            <div>
+                <canvas id="myChart1"
+                    style="background-color: white; position: relative; height: 50vh; width: 50vw; "></canvas>
+            </div>
+        </div>
+        <div id="div_total">
+            Total de acertos: <br>
+            8/10
+        </div>
+    </div>
+    <br>
+
+</body>
+
+</html>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    var pontuacaoTotal = location.hash.split("#")[1];
+    var pontuacaoFase1 = location.hash.split("#")[1];
+    var pontuacaoFase2 = location.hash.split("#")[1];
+
+    const ctx1 = document.getElementById('myChart1');
+
+    new Chart(ctx1, {
+        type: 'bar',
+        data: {
+            labels: ['Pontuação do Quiz'],
+            datasets: [{
+                label: 'fase 1',
+                data: [pontuacaoFase1],
+                borderWidth: 1,
+                borderColor: 'rgb(114, 173, 74)',
+                backgroundColor: 'rgb(114, 173, 74)',
+            },
+            {
+                label: 'fase 2',
+                data: [pontuacaoFase2],
+                borderWidth: 1,
+                borderColor: 'rgb(149, 108, 70)',
+                backgroundColor: 'rgb(149, 108, 70)',
+            }
+            ]
+
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+</script>
