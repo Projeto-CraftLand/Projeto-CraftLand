@@ -10,15 +10,12 @@ CREATE TABLE usuario (
 );
 
 create table pontuacao (
-pontuacaoFase1 int,
-pontuacaoFase2 int,
-pontuacaoTotal int,
+Fase1 int,
+Fase2 int,
+Total int,
 fkUsuario int,
 foreign key (fkUsuario) references usuario (id)
 );
 
 select * from usuario;
 select * from pontuacao;
-
-insert into pontuacao 
-values (10,5,15,1);
