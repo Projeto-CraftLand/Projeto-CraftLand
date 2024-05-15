@@ -246,6 +246,24 @@ a {
     color: rgb(114, 173, 74);
 }
 
+#footer {
+    background-color: rgb(114, 173, 74);
+    height: 150px;
+    color: #fff;
+    margin-top: 70px;
+    justify-content: center;
+    text-align: center;
+}
+
+#footer a {
+    display: row;
+}
+
+#footer span {
+    font-size: 15px;
+    font-family: roboto;
+}
+
 /* Login */
 
 .login {
