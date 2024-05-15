@@ -35,7 +35,8 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-
+    var Fase1 = sessionStorage.FASE1_PONTUACAO;
+    var Fase2 = sessionStorage.FASE2_PONTUACAO;
     const ctx1 = document.getElementById('myChart1');
 
     new Chart(ctx1, {
@@ -44,14 +45,14 @@
             labels: ['Pontuação do Quiz'],
             datasets: [{
                 label: 'fase 1',
-                data: [pontuacaoFase1],
+                data: [Fase1],
                 borderWidth: 1,
                 borderColor: 'rgb(114, 173, 74)',
                 backgroundColor: 'rgb(114, 173, 74)',
             },
             {
                 label: 'fase 2',
-                data: [pontuacaoFase2],
+                data: [Fase2],
                 borderWidth: 1,
                 borderColor: 'rgb(149, 108, 70)',
                 backgroundColor: 'rgb(149, 108, 70)',

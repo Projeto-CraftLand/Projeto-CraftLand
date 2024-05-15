@@ -13,13 +13,14 @@ body::-webkit-scrollbar-track {
 
 body::-webkit-scrollbar-thumb {
     background-image: url('tocha.png');
-    background-size: 35px;
+    background-size: 38px;
 }
 
 body {
     background-color: rgb(114, 173, 74);
     overflow-x: hidden;
 }
+
 
 a {
     text-decoration: none;
@@ -560,6 +561,10 @@ a {
     background-color: rgb(255, 255, 255);
     border-color: rgb(134, 79, 43);
     color: rgb(134, 79, 43);
+}
+
+#containerPerguntas {
+    font-size: 17px;
 }
 
 
