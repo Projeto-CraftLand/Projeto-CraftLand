@@ -53,7 +53,7 @@ a {
     color: rgb(100, 244, 5);
 }
 
-#myBtn {
+#btnInicio {
     display: none;
     position: fixed;
     bottom: 20px;
@@ -68,7 +68,6 @@ a {
     padding: 15px;
     border-radius: 10px;
     font-size: 18px;
-
 }
 
 /* home */
@@ -566,23 +565,74 @@ a {
 }
 
 /*Quiz*/
-.btn-outline-secondaryQuiz {
-    height: 60px;
-    width: 15vw;
+
+#quiz {
+    max-width: 75vw;
+    margin: 50px auto;
+    background-color: #fefefe;
+    border: 2px solid rgb(134, 79, 43);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    font-family: arial;
+    /* Adicionado para permitir o posicionamento absoluto */
+}
+
+#quiz .btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
     color: rgb(255, 255, 255);
     background-color: rgb(134, 79, 43);
     border-color: rgb(134, 79, 43);
     font-family: minecraft;
+    height: 60px;
+    width: 15vw;
+    margin-left: 40%;
 }
 
-.btn-outline-secondaryQuiz:hover {
-    background-color: rgb(255, 255, 255);
+#quiz .btn:hover {
+    background-color: rgb(114, 173, 74);
     border-color: rgb(134, 79, 43);
-    color: rgb(134, 79, 43);
+    color: white;
 }
 
-#containerPerguntas {
-    font-size: 17px;
+input[type="radio"] {
+    -webkit-appearance: none;
+    /* Remove o estilo padrão do navegador */
+    -moz-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgb(134, 79, 43);
+    /* Cor da borda semelhante ao verde do texto no Minecraft */
+    border-radius: 50%;
+    outline: none;
+    position: relative;
+    cursor: pointer;
+}
+
+#quiz input[type="radio"]:checked {
+    background-color: rgb(114, 173, 74);
+    /* Cor de seleção semelhante ao verde do texto no Minecraft */
+}
+
+#quiz input[type="radio"]:checked:after {
+    content: '\2714';
+    font-size: 16px;
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#quiz h2 {
+    margin-bottom: 10px;
+    color: rgb(134, 79, 43);
+
 }
 
 

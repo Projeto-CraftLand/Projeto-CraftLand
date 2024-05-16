@@ -21,46 +21,55 @@
 
     <script>
         // Array de perguntas divididas em duas fases
+
         const perguntasFase1 = [
-            "Qual bloco é usado para construir o portal para o Nether?",
-            "Qual é o nome do monstro que explode?",
-            "Qual é o nome do criador do Minecraft?",
-            "Qual é o recurso usado para fazer poções?",
-            "Qual é o bloco de mineração mais forte no jogo?"
+            "Quem é o criador original do jogo Minecraft?",
+            "Qual empresa desenvolveu e publicou o Minecraft originalmente?",
+            "Qual foi o ano em que a Microsoft adquiriu os direitos de propriedade intelectual do Minecraft?",
+            "Em que tipo de mundo os jogadores exploram no Minecraft?",
+            "Qual é o modo de jogo onde os jogadores precisam obter recursos para construir e sobreviver?"
         ];
 
         const perguntasFase2 = [
-            "Qual é a dimensão do Nether?",
-            "Quantos blocos de altura tem o mundo do Minecraft?",
-            "Qual é a função do Ender Dragon no jogo?",
-            "Quais são os nomes dos mobs hostis que aparecem à noite?",
-            "O que você precisa para criar uma poção de força?"
+            "O que os jogadores podem fazer no modo criativo do Minecraft?",
+            "O que os jogadores da versão Java do Minecraft podem fazer com módulos?",
+            "Qual evento de game jam a Mojang colaborou para angariar fundos para caridade?",
+            "Em que ano a Mojang anunciou publicamente sua aquisição pela Microsoft?",
+            "Qual é um dos objetivos principais do Minecraft Education?"
         ];
 
         // Opções para cada pergunta
         const opcoesFase1 = [
-            ["Obsidiana", "Pedra", "Madeira", "Cobblestone"],
-            ["Zumbi", "Esqueleto", "Creeper", "Enderman"],
-            ["Notch", "Herobrine", "Steve", "Ender Dragon"],
-            ["Diamante", "Ouro", "Ferro", "Nether Wart"],
-            ["Diamante", "Ouro", "Pedra", "Obsidiana"]
+            ["Markus 'Notch' Persson", "Carl Manneh", "Rolf Jansson", "Jakob Porser"],
+            ["Valve Corporation", "Mojang Studios", "Microsoft Studios", "Blizzard Entertainment"],
+            ["2009", "2011", "2014", "2015"],
+            ["Bidimensional", "Tridimensional", "Unidimensional", "Quadrilateral"],
+            ["Modo de Aventura", "Modo Criativo", "Modo Hardcore", "Modo de Sobrevivência"],
         ];
 
         const opcoesFase2 = [
-            ["3", "4", "5", "6"],
-            ["128", "256", "512", "1024"],
-            ["Finalizar o jogo", "Criar portais", "Defender o mundo", "Nenhuma"],
-            ["Zumbi e Creeper", "Zumbi e Enderman", "Enderman e Creeper", "Esqueleto e Zumbi"],
-            ["Poção de água e blaze powder", "Poção de água e Nether Wart", "Poção de força e blaze rod", "Poção de força e Nether Wart"]
+            ["Lutar contra inimigos controlados por computador", "Obter recursos limitados para construir", "Ter recursos ilimitados para construir", "Competir com outros jogadores"],
+            ["Criar novas texturas", "Modificar a jogabilidade", "Gerar novos mundos", "Desbloquear personagens especiais"],
+            ["Mojam 1", "Mojam 2", "Mojang Jam", "Catacomb Snatch"],
+            ["2012", "2014", "2016", "2018"],
+            ["Desenvolver habilidades para competições esportivas", "Promover o aprendizado criativo e inclusivo", "Treinar habilidades de marketing digital", "Fomentar competições entre alunos."]
         ];
 
         // Respostas corretas para cada pergunta
         const respostasFase1 = [
-            "Obsidiana", "Creeper", "Notch", "Nether Wart", "Obsidiana"
+            "Markus 'Notch' Persson",
+            "Mojang Studios",
+            "2014",
+            "Tridimensional",
+            "Modo de Sobrevivência",
         ];
 
         const respostasFase2 = [
-            "5", "256", "Finalizar o jogo", "Zumbi e Creeper", "Poção de força e blaze rod"
+            "Ter recursos ilimitados para construir",
+            "Modificar a jogabilidade",
+            "Mojam 1",
+            "2014",
+            "Promover o aprendizado criativo e inclusivo"
         ];
 
         const containerQuiz = document.getElementById('quiz');

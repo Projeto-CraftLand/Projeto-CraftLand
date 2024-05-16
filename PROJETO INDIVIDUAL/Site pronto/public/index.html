@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <button onclick="topFunction()" id="myBtn" title="Go to top">Inicio</button>
+    <button onclick="topFunction()" id="btnInicio" title="vai para o inicio">Inicio</button>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
@@ -217,22 +217,22 @@
 
 </html>
 <script>
-    // Get the button:
-    let mybutton = document.getElementById("myBtn");
 
-    // When the user scrolls down 20px from the top of the document, show the button
+    let botaoInicio = document.getElementById("btnInicio");
+
+    // quando o usuario navegar 20px para baixo da página, aparece o botão
     window.onscroll = function () { scrollFunction() };
 
     function scrollFunction() {
         if (document.documentElement.scrollTop > 20) {
-            mybutton.style.display = "block";
+            botaoInicio.style.display = "block";
         } else {
-            mybutton.style.display = "none";
+            botaoInicio.style.display = "none";
         }
     }
 
-    // When the user clicks on the button, scroll to the top of the document
+    // qunado o usuario clicar no botão, é direcionado para o topo da página
     function topFunction() {
-        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        document.documentElement.scrollTop = 0;
     }
 </script>
