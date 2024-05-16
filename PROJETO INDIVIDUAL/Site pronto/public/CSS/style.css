@@ -8,7 +8,7 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-track {
-    background: rgb(149, 108, 70);
+    background: rgba(149, 108, 70, 0);
 }
 
 body::-webkit-scrollbar-thumb {
@@ -16,11 +16,23 @@ body::-webkit-scrollbar-thumb {
     background-size: 38px;
 }
 
+#bodyQuiz::-webkit-scrollbar {
+    width: 17px;
+}
+
+#bodyQuiz::-webkit-scrollbar-track {
+    background: rgba(149, 108, 70, 0);
+}
+
+#bodyQuiz::-webkit-scrollbar-thumb {
+    background-image: url('tocha.png');
+    background-size: 19vh;
+}
+
 body {
     background-color: rgb(114, 173, 74);
     overflow-x: hidden;
 }
-
 
 a {
     text-decoration: none;
