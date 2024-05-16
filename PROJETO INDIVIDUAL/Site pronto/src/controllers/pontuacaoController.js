@@ -6,9 +6,9 @@ function buscarUltimasMedidas(req, res) {
 
     var idUsuario = req.params.idUsuario;
 
-    console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
+    console.log(`Recuperando as ultimas medidas`);
 
-    pontuacaoModel.buscarUltimasMedidas(idUsuario, limite_linhas).then(function (resultado) {
+    pontuacaoModel.buscarUltimasMedidas(idUsuario).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {

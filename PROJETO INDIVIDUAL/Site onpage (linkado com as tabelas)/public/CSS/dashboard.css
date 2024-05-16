@@ -1,4 +1,9 @@
 /*DashBoard*/
+body {
+    background-color: rgb(114, 173, 74);
+    overflow-x: hidden;
+}
+
 
 #div_total {
     font-size: 25px;

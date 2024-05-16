@@ -10,6 +10,7 @@ CREATE TABLE usuario (
 );
 
 create table pontuacao (
+id int PRIMARY KEY AUTO_INCREMENT,
 Fase1 int,
 Fase2 int,
 Total int,
