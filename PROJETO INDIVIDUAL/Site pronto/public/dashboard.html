@@ -6,11 +6,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AquaTech | Dashboards</title>
+    <title>CraftLand | Dashboards</title>
 
 
     <link rel="stylesheet" href="./../css/dashboards.css">
-    <link rel="stylesheet" href="./../css/estilo.css" />
+    <link rel="shortcut icon" href="./assets/imgs/logo mine.png" type="image/x-icon">
     <script src="../js/sessao.js"></script>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -34,7 +34,7 @@
             <h1>Resultado Quiz</h1>
 
             <div class="hello">
-                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+                <h3>Olá, <span id="b_usuario">usuário</span>! <br> Esse foi o seu resultado:</h3>
             </div>
             <!-- 
             <div class="btn-nav-white">
@@ -56,7 +56,9 @@
             </div> -->
 
             <div class="btn-logout" onclick="limparSessao()">
-                <h3>Voltar</h3>
+                <a href="./perfil.html">
+                    <h3>Voltar</h3>
+                </a>
             </div>
 
         </div>
@@ -68,6 +70,11 @@
             <div class="btns-dash" id="Quiz">
                 <!-- O gráfico é chamado de acordo com o id (fk_aquario) do banco  -->
             </div>
+            <div id="kpiTotal">
+                <span id="b_total">total</span>
+            </div>
+            <br>
+            <br>
             <div id="graficos">
                 <canvas style="background-color: white;" id="myChartCanvas"></canvas>
             </div>
@@ -80,28 +87,26 @@
 </html>
 
 <script>
+    b_total.innerHTML = sessionStorage.TOTAL_PONTUACAO;
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
     let proximaAtualizacao;
 
-    window.onload = exibirAquariosDoUsuario();
+    window.onload = exibirPontuacaoDoUsuario();
 
-    function exibirAquariosDoUsuario() {
+    function exibirPontuacaoDoUsuario() {
         var usuario = sessionStorage.ID_USUARIO;
 
         obterDadosGrafico(usuario)
     };
 
+    // function alterarTitulo(idUsuario) {
+    //     var tituloQuiz = document.getElementById(`tituloQuiz${idUsuario}`)
+    //     var descricao = JSON.parse(sessionStorage.USUARIO).find(item => item.id == idUsuario).descricao;
+    //     tituloQuiz.innerHTML = `<br> <br> <br>Resultado do quiz`
+    // }
 
-
-
-    function alterarTitulo(idUsuario) {
-        var tituloQuiz = document.getElementById(`tituloQuiz${idUsuario}`)
-        var descricao = JSON.parse(sessionStorage.USUARIO).find(item => item.id == idUsuario).descricao;
-        tituloQuiz.innerHTML = `<br> <br> <br>Resultado do quiz`
-    }
-
-    function exibirAquario(idUsuario) {
+    function exibirPontuacao(idUsuario) {
         let todosOsGraficos = JSON.parse(sessionStorage.USUARIO);
 
         for (i = 0; i < todosOsGraficos.length; i++) {
@@ -113,12 +118,12 @@
                 }
                 elementoAtual.classList.add("display-none")
 
-                // alterando estilo do botão
-                let btnAtual = document.getElementById(`Quiz${todosOsGraficos[i].id}`)
-                if (btnAtual.classList.contains("btn-pink")) {
-                    btnAtual.classList.remove("btn-pink")
-                }
-                btnAtual.classList.add("btn-white")
+                // // alterando estilo do botão
+                // let btnAtual = document.getElementById(`Quiz${todosOsGraficos[i].id}`)
+                // if (btnAtual.classList.contains("btn-pink")) {
+                //     btnAtual.classList.remove("btn-pink")
+                // }
+                // btnAtual.classList.add("btn-white")
             }
         }
 
@@ -187,9 +192,9 @@
                 label: 'Pontuações',
                 data: [],
                 fill: false,
-                backgroundColor: 'rgb(149, 108, 70)',
+                backgroundColor: ['rgb(149, 108, 70)', 'rgb(114, 173, 74)',],
                 borderColor: 'rgb(75, 192, 192)',
-                tension: 0.1
+                tension: 0.1,
             }]
         };
 
@@ -217,6 +222,15 @@
         const config = {
             type: 'bar',
             data: dados,
+            options: {
+                scales: {
+                    y: {
+                        ticks: {
+                            stepSize: 1
+                        }
+                    }
+                }
+            }
         };
 
         // Adicionando gráfico criado em div na tela
