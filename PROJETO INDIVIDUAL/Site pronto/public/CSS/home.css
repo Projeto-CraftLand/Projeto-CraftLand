@@ -79,7 +79,7 @@ a {
 }
 
 #img-home {
-    width: 98.9vw;
+    width: 100vw;
     height: 100vh;
 }
 
@@ -105,36 +105,6 @@ a {
 .btn-outline-success:hover {
     border-color: rgb(149, 108, 70);
     background-color: rgb(149, 108, 70);
-}
-
-.container-scroll-sobre_verde {
-    width: 100%;
-    height: 100vh;
-    background-color: rgb(114, 173, 74);
-
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    justify-content: space-evenly;
-
-    font-size: 40px;
-    color: rgb(255, 255, 255);
-}
-
-.container-scroll-sobre_verde img {
-    width: 50%;
-    padding: 5%;
-}
-
-.sobre_verde {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    width: 25vw;
-    gap: 15px;
-    font-family: minecraft;
 }
 
 
@@ -164,8 +134,7 @@ a {
     align-items: center;
     justify-content: space-evenly;
     height: 100vh;
-    background-color: rgb(134, 79, 43);
-    ;
+    background-image: url(../assets/imgs/bedrock.jpeg);
 }
 
 .container-scroll-sobreEdu img {
@@ -203,6 +172,7 @@ a {
     align-items: center;
     justify-content: space-evenly;
     height: 101vh;
+    background-image: url('../assets/imgs/diamante.jpg');
 }
 
 .container-scroll-sobreMoj img {
@@ -241,7 +211,7 @@ a {
     align-items: center;
     justify-content: space-evenly;
     height: 101vh;
-    background-color: rgb(134, 79, 43);
+    background-image: url(../assets/imgs/pedra.jpg);
 }
 
 .container-scroll-sobreMine img {
@@ -280,6 +250,7 @@ a {
     flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
+    background-image: url('../assets/imgs/fundo.jpg');
 }
 
 .container-scroll-sobreMim img {
