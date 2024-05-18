@@ -72,25 +72,31 @@
             "Promover o aprendizado criativo e inclusivo"
         ];
 
+        // Referências aos elementos HTML
         const containerPerguntas = document.getElementById('containerPerguntas');
         const enviarButton = document.getElementById('enviar');
         const proximaFaseButton = document.getElementById('proximaFase');
 
+        // Variáveis para armazenar o ID do usuário e as pontuações
         let idUsuario = sessionStorage.ID_USUARIO;
-        let pontuacaoFase1 = 0; // Variável para armazenar a pontuação da fase 1 do usuário
-        let pontuacaoFase2 = 0; // Variável para armazenar a pontuação da fase 2 do usuário
+        let pontuacaoFase1 = 0;
+        let pontuacaoFase2 = 0;
         let faseAtual = 1; // Variável para rastrear a fase atual do quiz
         let indicePerguntaAtual = 0; // Variável para rastrear o índice da próxima pergunta a ser exibida
 
+        // Event listeners para os botões
         enviarButton.onclick = enviar;
         proximaFaseButton.onclick = proximaFase;
 
         // Função para exibir as próximas perguntas com base na fase atual
         function exibirPerguntas() {
+            // Limpa o container de perguntas
             containerPerguntas.innerHTML = '';
+            // Seleciona as perguntas e opções com base na fase atual
             const perguntas = faseAtual === 1 ? perguntasFase1 : perguntasFase2;
             const opcoes = faseAtual === 1 ? opcoesFase1 : opcoesFase2;
 
+            // Exibe as próximas perguntas
             for (let i = indicePerguntaAtual; i < indicePerguntaAtual + 5; i++) {
                 if (i < perguntas.length) {
                     const pergunta = perguntas[i];
@@ -108,15 +114,18 @@
                 }
             }
 
+            // Atualiza o índice da próxima pergunta
             indicePerguntaAtual += 5;
         }
 
         // Função para verificar as respostas da fase atual
         function verificarRespostas() {
+            // Seleciona as respostas corretas com base na fase atual
             const respostas = faseAtual === 1 ? respostasFase1 : respostasFase2;
             let pontuacao = 0;
             let perguntasFase = faseAtual === 1 ? perguntasFase1 : perguntasFase2;
 
+            // Verifica cada resposta
             perguntasFase.forEach((pergunta, indice) => {
                 const opcaoSelecionada = document.querySelector(`input[name="pergunta${indicePerguntaAtual - 5 + indice}"]:checked`);
                 const respostaContainer = document.getElementById(`resultado2${indicePerguntaAtual - 5 + indice}`);
@@ -125,11 +134,13 @@
                     respostaContainer.innerText = "Correto!";
                     respostaContainer.style.color = "green";
                 } else {
-                    respostaContainer.innerText = `Incorreto!`;
+                    respostaContainer.innerText = "Incorreto!";
+                    // respostaContainer.innerText = `Incorreto! A resposta correta é: ${respostas[indice]}`;
                     respostaContainer.style.color = "red";
                 }
             });
 
+            // Atualiza a pontuação da fase atual
             if (faseAtual === 1) {
                 pontuacaoFase1 = pontuacao;
             } else {
@@ -168,12 +179,14 @@
         // Função para avançar para a próxima fase
         function proximaFase() {
             if (faseAtual === 1) {
+                // Se estiver na fase 1, avança para a fase 2
                 faseAtual = 2;
                 indicePerguntaAtual = 0;
                 proximaFaseButton.style.display = "none";
                 enviarButton.style.display = "block";
                 exibirPerguntas();
             } else {
+                // Se estiver na fase 2, envia o resultado final
                 enviarResultadoFinal();
             }
         }
@@ -181,6 +194,7 @@
         // Função de envio/avanço de fase
         function enviar() {
             verificarRespostas();
+            // Se todas as perguntas da fase atual foram respondidas, exibe o botão "Próxima Fase"
             if (faseAtual === 1 && indicePerguntaAtual >= perguntasFase1.length) {
                 enviarButton.style.display = "none";
                 proximaFaseButton.style.display = "block";
@@ -191,6 +205,7 @@
             } else {
                 exibirPerguntas();
             }
+            return false;
         }
 
         // Exibe as primeiras perguntas da fase 1
