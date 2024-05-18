@@ -15,13 +15,13 @@
         <div id="containerPerguntas"></div>
         <br>
         <button class="btn btn-outline-secondaryQuiz" id="enviar">Enviar</button>
+        <button class="btn btn-outline-secondaryQuiz" id="proximaFase" style="display: none;">Proxima Fase</button>
     </div>
 
     <div id="resultado"></div>
 
     <script>
         // Array de perguntas divididas em duas fases
-
         const perguntasFase1 = [
             "Quem é o criador original do jogo Minecraft?",
             "Qual empresa desenvolveu e publicou o Minecraft originalmente?",
@@ -72,10 +72,9 @@
             "Promover o aprendizado criativo e inclusivo"
         ];
 
-        const containerQuiz = document.getElementById('quiz');
-        const containerResultado = document.getElementById('resultado');
-        document.getElementById('enviar').onclick = enviar;
         const containerPerguntas = document.getElementById('containerPerguntas');
+        const enviarButton = document.getElementById('enviar');
+        const proximaFaseButton = document.getElementById('proximaFase');
 
         let idUsuario = sessionStorage.ID_USUARIO;
         let pontuacaoFase1 = 0; // Variável para armazenar a pontuação da fase 1 do usuário
@@ -83,51 +82,40 @@
         let faseAtual = 1; // Variável para rastrear a fase atual do quiz
         let indicePerguntaAtual = 0; // Variável para rastrear o índice da próxima pergunta a ser exibida
 
+        enviarButton.onclick = enviar;
+        proximaFaseButton.onclick = proximaFase;
+
         // Função para exibir as próximas perguntas com base na fase atual
         function exibirPerguntas() {
-            // Limpa o container de perguntas
             containerPerguntas.innerHTML = '';
-
-            // Seleciona as perguntas e opções com base na fase atual
             const perguntas = faseAtual === 1 ? perguntasFase1 : perguntasFase2;
             const opcoes = faseAtual === 1 ? opcoesFase1 : opcoesFase2;
 
-            // Exibe as próximas perguntas
             for (let i = indicePerguntaAtual; i < indicePerguntaAtual + 5; i++) {
                 if (i < perguntas.length) {
                     const pergunta = perguntas[i];
                     const opcoesPergunta = opcoes[i];
-
                     const divPergunta = document.createElement('div');
                     divPergunta.innerHTML = `
-            <h2>${pergunta}</h2>
-            ${opcoesPergunta.map((opcao, indiceOpcao) => `
-              <input type="radio" name="pergunta${i}" value="${opcao}" id="pergunta${i}_opcao${indiceOpcao}">
-              <label for="pergunta${i}_opcao${indiceOpcao}">${opcao}</label><br>
-            `).join('')}
-            <div id="resultado2${i}"></div>
-          `;
+                        <h2>${pergunta}</h2>
+                        ${opcoesPergunta.map((opcao, indiceOpcao) => `
+                            <input type="radio" name="pergunta${i}" value="${opcao}" id="pergunta${i}_opcao${indiceOpcao}">
+                            <label for="pergunta${i}_opcao${indiceOpcao}">${opcao}</label><br>
+                        `).join('')}
+                        <div id="resultado2${i}"></div>
+                    `;
                     containerPerguntas.appendChild(divPergunta);
                 }
             }
 
-            // Atualiza o índice da próxima pergunta
             indicePerguntaAtual += 5;
         }
 
-        // Função para verificar as respostas da fase atual e avançar para a próxima fase ou mostrar o resultado final
+        // Função para verificar as respostas da fase atual
         function verificarRespostas() {
             const respostas = faseAtual === 1 ? respostasFase1 : respostasFase2;
-            let pontuacao;
-            let perguntasFase;
-
-            if (faseAtual === 1) {
-                pontuacao = pontuacaoFase1;
-                perguntasFase = perguntasFase1;
-            } else {
-                pontuacao = pontuacaoFase2;
-                perguntasFase = perguntasFase2;
-            }
+            let pontuacao = 0;
+            let perguntasFase = faseAtual === 1 ? perguntasFase1 : perguntasFase2;
 
             perguntasFase.forEach((pergunta, indice) => {
                 const opcaoSelecionada = document.querySelector(`input[name="pergunta${indicePerguntaAtual - 5 + indice}"]:checked`);
@@ -137,73 +125,76 @@
                     respostaContainer.innerText = "Correto!";
                     respostaContainer.style.color = "green";
                 } else {
-                    respostaContainer.innerText = "Incorreto!";
+                    respostaContainer.innerText = `Incorreto!`;
                     respostaContainer.style.color = "red";
                 }
             });
 
-            // Mostra as respostas corretas e incorretas por 7 segundos antes de avançar
-            setTimeout(() => {
-                // Se for a primeira fase, avança para a segunda fase, senão, mostra o resultado final
-                if (faseAtual === 1) {
-                    pontuacaoFase1 = pontuacao;
-                    faseAtual = 2;
-                    indicePerguntaAtual = 0;
-                    exibirPerguntas();
-                } else {
-                    pontuacaoFase2 = pontuacao;
-                    // Chama o fetch apenas após a segunda fase
-                    fetch("/quiz/enviar", {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify({
-                            fase1Server: pontuacaoFase1,
-                            fase2Server: pontuacaoFase2,
-                            totalServer: pontuacaoFase1 + pontuacaoFase2,
-                            usuarioIdServer: idUsuario,
-
-                        })
-                    })
-
-                        .then(function (resposta) {
-                            console.log("resposta: ", resposta);
-                            if (resposta.ok) {
-                                resposta.json().then(json => {
-                                    console.log(json);
-                                    console.log(JSON.stringify(json));
-                                    sessionStorage.TOTAL_PONTUACAO = json.Total;
-
-                                    setTimeout(function () {
-                                        window.location = "dashboard.html";
-                                    }, 2000);
-
-                                });
-                            }
-                        }).catch(function (resposta) {
-                            console.log(`#ERRO: ${resposta}`);
-                        });
-                }
-            }, 7000); // 7 segundos de tempo de exibição
+            if (faseAtual === 1) {
+                pontuacaoFase1 = pontuacao;
+            } else {
+                pontuacaoFase2 = pontuacao;
+            }
         }
 
-        // Event listener para o botão de enviar
-        function enviar() {
-            if (indicePerguntaAtual < perguntasFase1.length && faseAtual === 1) {
-                exibirPerguntas(); // Exibe as próximas perguntas da fase 1
-            } else if (indicePerguntaAtual < perguntasFase2.length && faseAtual === 2) {
-                exibirPerguntas(); // Exibe as próximas perguntas da fase 2
-            } else {
-                verificarRespostas(); // Verifica as respostas e mostra o resultado final
-            }
+        // Função para enviar o resultado final ao servidor
+        function enviarResultadoFinal() {
+            fetch("/quiz/enviar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    fase1Server: pontuacaoFase1,
+                    fase2Server: pontuacaoFase2,
+                    totalServer: pontuacaoFase1 + pontuacaoFase2,
+                    usuarioIdServer: idUsuario,
+                })
+            })
+                .then(function (resposta) {
+                    if (resposta.ok) {
+                        resposta.json().then(json => {
+                            sessionStorage.TOTAL_PONTUACAO = json.Total;
+                            setTimeout(function () {
+                                window.location = "dashboard.html";
+                            }, 2000);
+                        });
+                    }
+                }).catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                });
+        }
 
-            return false;
-        };
+        // Função para avançar para a próxima fase
+        function proximaFase() {
+            if (faseAtual === 1) {
+                faseAtual = 2;
+                indicePerguntaAtual = 0;
+                proximaFaseButton.style.display = "none";
+                enviarButton.style.display = "block";
+                exibirPerguntas();
+            } else {
+                enviarResultadoFinal();
+            }
+        }
+
+        // Função de envio/avanço de fase
+        function enviar() {
+            verificarRespostas();
+            if (faseAtual === 1 && indicePerguntaAtual >= perguntasFase1.length) {
+                enviarButton.style.display = "none";
+                proximaFaseButton.style.display = "block";
+            } else if (faseAtual === 2 && indicePerguntaAtual >= perguntasFase2.length) {
+                enviarButton.style.display = "none";
+                proximaFaseButton.innerText = "Finalizar";
+                proximaFaseButton.style.display = "block";
+            } else {
+                exibirPerguntas();
+            }
+        }
 
         // Exibe as primeiras perguntas da fase 1
         exibirPerguntas();
-
 
     </script>
 
