@@ -10,6 +10,10 @@ body {
   background-size: 100%;
 }
 
+img {
+  -webkit-user-drag: none;
+}
+
 /* pagina graficos */
 
 .dash-header {

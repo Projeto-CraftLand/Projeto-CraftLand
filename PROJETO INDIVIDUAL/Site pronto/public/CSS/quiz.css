@@ -22,6 +22,10 @@ body::-webkit-scrollbar-thumb {
     background-size: 19vh;
 }
 
+img {
+    -webkit-user-drag: none;
+}
+
 #quiz {
     max-width: 75vw;
     margin: 50px auto;
