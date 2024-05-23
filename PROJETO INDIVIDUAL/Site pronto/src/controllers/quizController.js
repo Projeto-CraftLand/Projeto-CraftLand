@@ -1,5 +1,6 @@
 var quizModel = require("../models/quizModel");
 
+
 function enviar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo quiz.html
     var fase1 = req.body.fase1Server;

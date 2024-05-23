@@ -87,7 +87,7 @@
 </html>
 
 <script>
-    b_total.innerHTML = sessionStorage.TOTAL_PONTUACAO;
+    b_total.innerHTML = `Total de acertos <br>${sessionStorage.TOTAL_PONTUACAO}/10`
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
     let proximaAtualizacao;
@@ -162,7 +162,6 @@
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     resposta.reverse();
-
                     plotarGrafico(resposta, idUsuario);
 
                 });
@@ -205,9 +204,10 @@
         // Inserindo valores recebidos em estrutura para plotar o gráfico
         for (i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
-            labels.push(registro.momento_grafico);
+            // labels.push(registro.momento_grafico);
             dados.datasets[0].data.push(registro.fase1);
             dados.datasets[0].data.push(registro.fase2);
+            // dados.datasets[0].data.push(registro.total);
         }
 
         console.log('----------------------------------------------')

@@ -150,6 +150,8 @@
 
         // Função para enviar o resultado final ao servidor
         function enviarResultadoFinal() {
+            let total = pontuacaoFase1 + pontuacaoFase2
+            sessionStorage.TOTAL_PONTUACAO = total
             fetch("/quiz/enviar", {
                 method: "POST",
                 headers: {
@@ -158,14 +160,13 @@
                 body: JSON.stringify({
                     fase1Server: pontuacaoFase1,
                     fase2Server: pontuacaoFase2,
-                    totalServer: pontuacaoFase1 + pontuacaoFase2,
                     usuarioIdServer: idUsuario,
+                    totalServer: total
                 })
             })
                 .then(function (resposta) {
                     if (resposta.ok) {
                         resposta.json().then(json => {
-                            sessionStorage.TOTAL_PONTUACAO = json.Total;
                             setTimeout(function () {
                                 window.location = "dashboard.html";
                             }, 2000);
@@ -175,6 +176,8 @@
                     console.log(`#ERRO: ${resposta}`);
                 });
         }
+
+
 
         // Função para avançar para a próxima fase
         function proximaFase() {

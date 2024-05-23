@@ -4,7 +4,8 @@ function buscarUltimasMedidas(idUsuario) {
 
     var instrucaoSql = `SELECT 
         fase1 as fase1,
-        fase2 as fase2
+        fase2 as fase2,
+        total as total
                     FROM pontuacao
                     WHERE fkUsuario = ${idUsuario}
                     ORDER BY id DESC LIMIT 1 `;
