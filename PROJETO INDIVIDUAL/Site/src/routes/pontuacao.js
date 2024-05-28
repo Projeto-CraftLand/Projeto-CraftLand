@@ -1,10 +1,10 @@
 var express = require("express");
 var router = express.Router();
 
-var medidaController = require("../controllers/pontuacaoController");
+var pontuacaoController = require("../controllers/pontuacaoController");
 
 router.get("/ultimas/:idUsuario", function (req, res) {
-    medidaController.buscarUltimasMedidas(req, res);
+    pontuacaoController.buscarUltimasMedidas(req, res);
 });
 
 module.exports = router;

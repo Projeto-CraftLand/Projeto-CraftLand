@@ -190,3 +190,14 @@ img {
     color: rgb(134, 79, 43);
     text-decoration: underline;
 }
+
+.loading-div {
+    width: 50px;
+    display: none;
+    margin-left: 40%;
+}
+
+.loading-div img {
+    height: 80px;
+    width: 80px;
+}

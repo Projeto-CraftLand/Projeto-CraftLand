@@ -9,6 +9,8 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="CSS/loginCadastro.css">
     <link rel="shortcut icon" href="./assets/imgs/logo mine.png" type="image/x-icon">
+
+    <script src="./js/sessao.js"></script>
 </head>
 
 <body>
@@ -70,6 +72,9 @@
         <button class="btn btn-outline-light" onclick="entrar()">Acessar</button> <br>
         <span id="possuiOuNao">Não possui uma conta? <a style="font-weight: bold;"
                 href="./cadastro.html">Cadastrar</a></span>
+        <div id="div_aguardar" class="loading-div">
+            <img src="./assets/circle-loading.gif" id="loading-gif">
+        </div>
     </div>
 
 </body>
@@ -77,6 +82,7 @@
 <script>
 
     function entrar() {
+        aguardar();
 
         var emailVar = input_email.value;
         var senhaVar = input_senha.value;
@@ -116,9 +122,10 @@
             } else {
                 div_erro.innerHTML = `senha ou email incorretos`
                 console.log("Houve um erro ao tentar realizar o login!");
-
+                finalizarAguardar();
                 resposta.text().then(texto => {
                     console.error(texto);
+                    finalizarAguardar(texto);
                 });
             }
 
