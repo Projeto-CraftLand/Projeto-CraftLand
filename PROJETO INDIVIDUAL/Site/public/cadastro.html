@@ -66,7 +66,7 @@
         <input type="text" id="input_nome" placeholder="nome"> <br> <br>
         <img src="./assets/icon/sinal-de-arroba.png">
         <input type="text" id="input_email" placeholder="email"> <br>
-        <span id="deveConter">*o email deverá conter @</span> <br>
+        <span id="deveConter">*o email deverá conter @ e .</span> <br>
         <img src="./assets/icon/cadeado.png">
         <input type="password" id="input_senha" placeholder="senha"> <br>
         <span id="deveConter">*deverá conter pelo menos um numero e um caractere especial</span> <br>
@@ -89,11 +89,12 @@
         const senhaVar = input_senha.value;
         const confirmacaoSenhaVar = input_Confirmsenha.value;
 
+        let validacao = (nomeVar != "" && emailVar != "" && senhaVar != "" && confirmacaoSenhaVar != "")
         let variavel = false;
 
-        if (emailVar != "" || nomeVar != "" || senhaVar != "" || confirmacaoSenhaVar != "") {
+        if (validacao) {
 
-            if (emailVar.indexOf("@") == -1) {
+            if (emailVar.indexOf("@") && emailVar.indexOf(".") == -1) {
                 div_erro.innerHTML = `email invalido`
             } else if (senhaVar.indexOf("@") != -1 || senhaVar.indexOf("#") != -1 || senhaVar.indexOf("%") != -1) {
                 // if (senha.length >= 8) {
