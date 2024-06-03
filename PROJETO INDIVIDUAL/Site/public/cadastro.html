@@ -97,55 +97,55 @@
             if (emailVar.indexOf("@") && emailVar.indexOf(".") == -1) {
                 div_erro.innerHTML = `email invalido`
             } else if (senhaVar.indexOf("@") != -1 || senhaVar.indexOf("#") != -1 || senhaVar.indexOf("%") != -1) {
-                // if (senha.length >= 8) {
-                for (let contador = 0; contador <= 9; contador++) {
-                    if (senhaVar.indexOf(contador) != -1) {
-                        variavel = true;
+                if (senhaVar.length >= 8) {
+                    for (let contador = 0; contador <= 9; contador++) {
+                        if (senhaVar.indexOf(contador) != -1) {
+                            variavel = true;
+                        }
                     }
-                }
-                if (variavel == false) {
-                    div_erro.innerHTML = `senha não possui nenhum numero`
-                } else if (senhaVar == confirmacaoSenhaVar) {
-                    fetch("/usuarios/cadastrar", {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify({
-                            // crie um atributo que recebe o valor recuperado aqui
-                            // Agora vá para o arquivo routes/usuario.js
-                            nomeServer: nomeVar,
-                            emailServer: emailVar,
-                            senhaServer: senhaVar,
-                        }),
-                    })
-                        .then(function (resposta) {
-                            console.log("resposta: ", resposta);
-
-                            if (resposta.ok) {
-
-                                div_sucesso.innerHTML =
-                                    "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-
-                                setTimeout(() => {
-                                    window.location = "login.html";
-                                }, "2000");
-
-                            } else {
-                                throw "Houve um erro ao tentar realizar o cadastro!";
-                            }
+                    if (variavel == false) {
+                        div_erro.innerHTML = `senha não possui nenhum numero`
+                    } else if (senhaVar == confirmacaoSenhaVar) {
+                        fetch("/usuarios/cadastrar", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify({
+                                // crie um atributo que recebe o valor recuperado aqui
+                                // Agora vá para o arquivo routes/usuario.js
+                                nomeServer: nomeVar,
+                                emailServer: emailVar,
+                                senhaServer: senhaVar,
+                            }),
                         })
-                        .catch(function (resposta) {
-                            console.log(`#ERRO: ${resposta}`);
-                        });
+                            .then(function (resposta) {
+                                console.log("resposta: ", resposta);
 
-                    return false;
+                                if (resposta.ok) {
+                                    div_erro.innerHTML = ""
+                                    div_sucesso.innerHTML =
+                                        "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+                                    setTimeout(() => {
+                                        window.location = "login.html";
+                                    }, "2000");
+
+                                } else {
+                                    throw "Houve um erro ao tentar realizar o cadastro!";
+                                }
+                            })
+                            .catch(function (resposta) {
+                                console.log(`#ERRO: ${resposta}`);
+                            });
+
+                        return false;
+                    } else {
+                        div_erro.innerHTML = `senhas não conferem`
+                    }
                 } else {
-                    div_erro.innerHTML = `senhas não conferem`
+                    div_erro.innerHTML = "senha menor que 8 caracteres"
                 }
-                // } else {
-                //     div_erro.innerHTML = "senha menor que 8 caracteres"
-                // }
             } else {
                 div_erro.innerHTML = "senha não contem caracter especial"
             }
