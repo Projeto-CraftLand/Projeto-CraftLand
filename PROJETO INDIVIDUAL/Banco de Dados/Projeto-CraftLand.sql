@@ -21,6 +21,7 @@ foreign key (fkUsuario) references usuario (id)
 select * from usuario;
 select * from pontuacao;
 
+
 /*
 drop table pontuacao;
 truncate usuario;
