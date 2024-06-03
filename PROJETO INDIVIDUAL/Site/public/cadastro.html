@@ -132,7 +132,7 @@
                                     }, "2000");
 
                                 } else {
-                                    throw "Houve um erro ao tentar realizar o cadastro!";
+                                    throw div_erro.innerHTML = "Esse email ou nome ja possui login";
                                 }
                             })
                             .catch(function (resposta) {
