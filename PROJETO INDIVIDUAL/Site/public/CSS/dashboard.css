@@ -35,12 +35,33 @@ img {
   background-color: white;
   font-family: minecraft;
   border-radius: 30px;
-  width: 13vw;
+  width: 20vw;
   height: 13vh;
-  margin-left: 39%;
   text-align: center;
   display: flex;
   align-items: center;
+  justify-content: center;
+}
+
+#kpiMedia {
+  color: black;
+  font-size: 25px;
+  background-color: white;
+  font-family: minecraft;
+  border-radius: 30px;
+  width: 20vw;
+  height: 13vh;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#kpis {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  /* margin-left: 20px; */
 }
 
 

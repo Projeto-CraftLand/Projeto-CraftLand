@@ -34,7 +34,7 @@
             <h1>Resultado Quiz</h1>
 
             <div class="hello">
-                <h3>Olá, <span id="b_usuario">usuário</span>! <br> Esse foi o seu resultado:</h3>
+                <h3>Olá, <span id="b_usuario">usuário</span>! <br> Esse foi o seu resultado:</h3> <br>
             </div>
             <!-- 
             <div class="btn-nav-white">
@@ -70,8 +70,13 @@
             <div class="btns-dash" id="Quiz">
                 <!-- O gráfico é chamado de acordo com o id (fk_aquario) do banco  -->
             </div>
-            <div id="kpiTotal">
-                <span id="b_total">total</span>
+            <div id="kpis">
+                <div id="kpiTotal">
+                    <span id="b_total">total</span>
+                </div>
+                <div id="kpiMedia">
+                    <span id="b_media">media</span>
+                </div>
             </div>
             <br>
             <br>
@@ -87,7 +92,7 @@
 </html>
 
 <script>
-    b_total.innerHTML = `Total de acertos <br>${sessionStorage.TOTAL_PONTUACAO}/10`
+    b_total.innerHTML = `Total de acertos<br>${sessionStorage.TOTAL_PONTUACAO}/10`
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
     let proximaAtualizacao;
@@ -142,6 +147,8 @@
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     resposta.reverse();
+                    let media = Number(resposta[0].media)
+                    b_media.innerHTML = `Media dos usuarios<br>${media}`
                     plotarGrafico(resposta, idUsuario);
 
                 });
