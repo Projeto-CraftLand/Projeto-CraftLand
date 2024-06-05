@@ -20,7 +20,7 @@ foreign key (fkUsuario) references usuario (id)
 
 select * from usuario;
 select * from pontuacao;
-
+select round(avg(total),2) media from pontuacao;
 
 /*
 drop table pontuacao;
