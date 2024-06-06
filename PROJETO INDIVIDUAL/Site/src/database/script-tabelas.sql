@@ -4,8 +4,8 @@ use craftland;
 
 CREATE TABLE usuario (
 	id INT PRIMARY KEY AUTO_INCREMENT,
-	nome VARCHAR(50),
-	email VARCHAR(50),
+	nome VARCHAR(50) unique,
+	email VARCHAR(50) unique,
 	senha VARCHAR(50)
 );
 
@@ -20,6 +20,7 @@ foreign key (fkUsuario) references usuario (id)
 
 select * from usuario;
 select * from pontuacao;
+select round(avg(total),2) media from pontuacao;
 
 /*
 drop table pontuacao;
