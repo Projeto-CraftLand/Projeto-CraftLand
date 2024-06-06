@@ -2,8 +2,6 @@ var pontuacaoModel = require("../models/pontuacaoModel");
 
 function buscarUltimasMedidas(req, res) {
 
-    const limite_linhas = 7;
-
     var idUsuario = req.params.idUsuario;
 
     console.log(`Recuperando as ultimas medidas`);
